@@ -143,6 +143,7 @@ b { color: var(--cream); font-weight: 500; }
 .hero__cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
 
 /* embedded prototype */
+#prototype .section__intro { max-width: none; }
 .proto__frame { border: 1px solid var(--line-strong); padding: 10px; background: linear-gradient(160deg, var(--surface-2), var(--surface)); box-shadow: 0 40px 120px rgba(0, 0, 0, .5), 0 0 60px rgba(142, 168, 255, .1); }
 .proto__frame iframe { display: block; width: 100%; aspect-ratio: 16 / 10; min-height: 420px; border: 0; background: var(--bg-2); }
 .proto__foot { display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; margin-top: 18px; }
