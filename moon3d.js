@@ -58,7 +58,7 @@ function init() {
       const inner = g.createRadialGradient(-r * 0.15, -r * 0.15, 0, 0, 0, r);
       inner.addColorStop(0, 'rgba(15,22,55,0.55)'); inner.addColorStop(0.75, 'rgba(25,35,80,0.35)'); inner.addColorStop(1, 'rgba(0,0,0,0)');
       g.fillStyle = inner; g.beginPath(); g.arc(0, 0, r, 0, Math.PI * 2); g.fill();
-      g.strokeStyle = 'rgba(215,226,255,0.22)'; g.lineWidth = Math.max(1, r * 0.12);
+      g.strokeStyle = 'rgba(215,226,255,0.13)'; g.lineWidth = Math.max(1, r * 0.12);
       g.beginPath(); g.arc(0, 0, r * 0.95, Math.PI * 0.1, Math.PI * 1.05); g.stroke();
       g.restore();
     }
@@ -79,12 +79,12 @@ function init() {
 
   // soft periwinkle rim glow
   const glow = new THREE.Mesh(
-    new THREE.SphereGeometry(1.06, 64, 48),
+    new THREE.SphereGeometry(1.22, 64, 48),
     new THREE.ShaderMaterial({
       transparent: true, depthWrite: false, side: THREE.BackSide, blending: THREE.AdditiveBlending,
       uniforms: { c: { value: new THREE.Color('#8ea8ff') } },
       vertexShader: 'varying vec3 vN; void main(){ vN = normalize(normalMatrix*normal); gl_Position = projectionMatrix*modelViewMatrix*vec4(position,1.0); }',
-      fragmentShader: 'uniform vec3 c; varying vec3 vN; void main(){ float i = pow(0.75 - dot(vN, vec3(0.0,0.0,1.0)), 3.0); gl_FragColor = vec4(c, clamp(i,0.0,1.0)*0.9); }'
+      fragmentShader: 'uniform vec3 c; varying vec3 vN; void main(){ float d = abs(dot(vN, vec3(0.0,0.0,1.0))); float i = smoothstep(0.0, 0.55, d) * (1.0 - smoothstep(0.55, 1.0, d)); gl_FragColor = vec4(c, i*0.22); }'
     })
   );
   scene.add(glow);
@@ -105,8 +105,8 @@ function init() {
   scene.add(orbit);
 
   /* ---- light ---- */
-  scene.add(new THREE.AmbientLight('#4a5ca8', 0.55));
-  const sun = new THREE.DirectionalLight('#f4f0e8', 2.6);
+  scene.add(new THREE.AmbientLight('#5a6cb8', 0.7));
+  const sun = new THREE.DirectionalLight('#f4f0e8', 3.2);
   sun.position.set(-3, 2.2, 3.5);
   scene.add(sun);
   const back = new THREE.DirectionalLight('#8ea8ff', 0.9);
