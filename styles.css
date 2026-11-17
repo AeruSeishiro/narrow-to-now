@@ -131,6 +131,11 @@ b { color: var(--cream); font-weight: 500; }
 .planet__orbit { position: absolute; width: 420px; height: 140px; border: 1px solid rgba(170, 192, 255, .3); border-radius: 50%; transform: rotate(-14deg); }
 .planet__orbit--front { clip-path: inset(50% 0 0 0); border-color: rgba(195, 209, 255, .45); }
 
+/* 3D moon (three.js); the CSS planet stays as a fallback */
+.moon3d { position: absolute; left: 50%; top: 50%; width: 560px; height: 460px; transform: translate(-50%, -50%); cursor: grab; touch-action: pan-y; }
+.moon3d:active { cursor: grabbing; }
+.hero__sky.has-3d .planet__ball, .hero__sky.has-3d .planet__orbit { display: none; }
+
 /* fixed nav only appears once you scroll past the hero bar */
 .nav { opacity: 0; transform: translateY(-100%); pointer-events: none; transition: opacity .4s, transform .5s var(--ease), background .4s, border-color .4s; }
 .nav.is-scrolled { opacity: 1; transform: none; pointer-events: auto; }
@@ -310,6 +315,7 @@ b { color: var(--cream); font-weight: 500; }
 @media (max-width: 1080px) {
   .hero { grid-template-columns: 1fr; }
   .hero__sky { order: 2; height: 280px; margin-top: 10px; }
+  .moon3d { width: 420px; height: 345px; }
   .planet__ball { width: 220px; } .planet__orbit { width: 320px; height: 104px; } .planet__glow { width: 380px; height: 380px; }
   .hero__title { white-space: normal; }
   .grid--4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
